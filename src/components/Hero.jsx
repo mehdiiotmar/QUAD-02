@@ -5,7 +5,7 @@ import { useLang } from '../context/LanguageContext';
 import { fetchHeroSlides } from '../lib/siteDataService';
 
 const FALLBACK_SLIDES = [
-  { id: 1, image_url: 'https://images.pexels.com/photos/1007410/pexels-photo-1007410.jpeg?auto=compress&w=1600', position: 'center 40%' },
+  { id: 1, image_url: 'https://res.cloudinary.com/dmxtic6gh/image/upload/v1776800346/e1_fha1xj.jpg', position: 'center 40%' },
   { id: 2, image_url: 'https://images.pexels.com/photos/1118448/pexels-photo-1118448.jpeg?auto=compress&w=1600', position: 'center 50%' },
   { id: 3, image_url: 'https://images.pexels.com/photos/1402787/pexels-photo-1402787.jpeg?auto=compress&w=1600', position: 'center 35%' },
 ];
