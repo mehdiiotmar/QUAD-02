@@ -1,44 +1,13 @@
-import { supabase } from './supabase';
+// Mode WhatsApp uniquement - Supabase désactivé
+// Pour réactiver Supabase : recréez ce fichier avec import { supabase } from './supabase';
 
 export async function saveBooking({ service, date, time, people, name, phone, notes }) {
-  const { data, error } = await supabase
-    .from('bookings')
-    .insert({
-      service,
-      date: date || null,
-      time,
-      people: Number(people),
-      name,
-      phone,
-      notes,
-      source: 'form',
-      status: 'pending',
-    })
-    .select('id')
-    .maybeSingle();
-
-  if (error) throw error;
-  return data;
+  console.log('📝 Réservation enregistrée (WhatsApp uniquement):', { service, date, time, people, name });
+  // Retourne un ID factice pour compatibilité
+  return { id: 'wa-' + Date.now(), status: 'whatsapp-only' };
 }
 
 export async function saveCartBooking({ name, phone, notes, cartItems }) {
-  const { data, error } = await supabase
-    .from('bookings')
-    .insert({
-      service: cartItems.map((i) => `${i.qty}x ${i.name}`).join(', '),
-      date: null,
-      time: '',
-      people: cartItems.reduce((sum, i) => sum + i.qty, 0),
-      name,
-      phone,
-      notes: notes || '',
-      source: 'cart',
-      cart_items: cartItems,
-      status: 'pending',
-    })
-    .select('id')
-    .maybeSingle();
-
-  if (error) throw error;
-  return data;
+  console.log('🛒 Panier enregistré (WhatsApp uniquement):', { name, items: cartItems.length });
+  return { id: 'wa-' + Date.now(), status: 'whatsapp-only' };
 }
